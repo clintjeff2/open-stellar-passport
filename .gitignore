@@ -1,0 +1,29 @@
+# Node
+node_modules/
+dist/
+
+# Circuit build artifacts
+build/
+*.r1cs
+*.wasm
+*.sym
+*.zkey
+*.ptau
+witness.wtns
+!build/.gitkeep
+# …but keep the compiled contract WASMs (deployment artifacts + contractimport input)
+!contracts/**/*.wasm
+
+# Rust / Soroban
+target/
+*.wasm.d
+
+# Env / secrets
+.env
+.env.local
+*.key
+identity.json
+
+# OS
+.DS_Store
+Thumbs.db
