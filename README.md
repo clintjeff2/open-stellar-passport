@@ -12,7 +12,34 @@ Generates a real Groth16 proof in your browser and verifies it on the deployed S
 
 > Live demo: real in-browser Groth16 proving → real on-chain verification → x402 payment gate. Run it with `cd frontend && npm install && npm run dev`.
 
-🎬 **Demo video** (1:40, captioned screencast of the live flow): [narrated](docs/demo-narrated.mp4) · [silent](docs/demo.mp4) — script & shot list in [docs/VIDEO.md](docs/VIDEO.md), Remotion project in [video/](video/)
+🎬 **Demo video** (2:02, ElevenLabs voiceover + synced captions): [narrated](docs/demo-narrated.mp4) · [silent](docs/demo.mp4) — built with Remotion in [video/](video/), script in [docs/VIDEO.md](docs/VIDEO.md)
+
+---
+
+## 🔗 On-chain proof (Stellar testnet)
+
+Not a mock — a real ZK proof was verified and an attestation **minted on-chain**. Everything here is independently verifiable on [stellar.expert](https://stellar.expert/explorer/testnet):
+
+| | Address / tx | Explorer |
+|---|---|---|
+| **AgentPassportValidator** — stateful policy contract | `CDNSZUNEWFCGSPWLPDSWTENR2WPHKC34RGZQG7RJA54OPGTZGVVRFYBA` | [view ↗](https://stellar.expert/explorer/testnet/contract/CDNSZUNEWFCGSPWLPDSWTENR2WPHKC34RGZQG7RJA54OPGTZGVVRFYBA) |
+| **CircomGroth16Verifier** — BN254, our circuit's VK baked in | `CCMKLYSRUH2HMA4UU6WLXWQXEY6KAH5AWB5BEVMJGNGC5GLGTVROLG4A` | [view ↗](https://stellar.expert/explorer/testnet/contract/CCMKLYSRUH2HMA4UU6WLXWQXEY6KAH5AWB5BEVMJGNGC5GLGTVROLG4A) |
+| **Mint tx** — `verify_and_register` succeeded, `passport` event emitted | `226170818ccb4e37817e3929cff328da5d71203c72a219c91325100bde966f90` | [view ↗](https://stellar.expert/explorer/testnet/tx/226170818ccb4e37817e3929cff328da5d71203c72a219c91325100bde966f90) |
+| **Init tx** | `099f4243ead8af663eaa4cdd31312cc6b981f91362ab4e320572fc87d925025d` | [view ↗](https://stellar.expert/explorer/testnet/tx/099f4243ead8af663eaa4cdd31312cc6b981f91362ab4e320572fc87d925025d) |
+
+What the chain enforces — tested end-to-end:
+
+- ✅ **Valid proof** → `verify_and_register` **Success**: attestation minted for agent `#42` at ledger `3,146,304`, `passport` event emitted with the nullifier + spend cap.
+- 🔁 **Replay the same proof** → `Error(Contract, #4)` = **`NullifierUsed`** (stateful anti-replay / anti-Sybil).
+- ✋ **Tamper a public input** → `Error(Contract, #0)` = **`InvalidProof`** (the BN254 pairing check rejects it — soundness).
+- 🔒 Only **4 public inputs** ever reach the chain (`registryRoot`, `nullifierHash`, `agentId`, `spendCap`). The owner key, balance and Merkle path never leave the browser.
+
+**Reproduce it yourself** against the live contract:
+
+```bash
+node scripts/smoke-onchain.mjs          # fresh proof verifies · replay rejected · reads
+# → SMOKE OK — 4 passed, 0 failed
+```
 
 ---
 
@@ -44,8 +71,8 @@ A compromised agent can't exceed its proven cap. The owner's identity and real b
 ```
 Human → mints agent in trionlabs/stellar-8004 Identity Registry (agent_id)
       → owner generates Groth16 proof CLIENT-SIDE (snarkjs/WASM, secrets never leave)
-      → AgentPassportValidator (Soroban) verifies proof on BN254
-      → writes a "zk-passport" attestation into the 8004 Validation Registry
+      → AgentPassportValidator (Soroban) verifies proof on BN254, burns the nullifier
+      → writes a "zk-passport" attestation (validator store today; 8004 Validation Registry is the target)
 At payment time (x402): settle only if agent has a valid passport AND amount ≤ proven cap.
 ```
 
