@@ -1,0 +1,57 @@
+<!-- @dsCard group="Components" name="Buttons & badges" -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Controls — Agent Passport</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+      :root { --ink-900:#0a0a0f; --violet:#7c5cff; --violet-soft:#9d86ff; --cyan:#22d3ee; --verified:#34d399; --denied:#fb7185; --amber:#fbbf24; --fg:#ececf3; --muted:#8b8ba3; --faint:#5b5b73; }
+      * { box-sizing: border-box; }
+      body { margin:0; padding:44px; font-family:"Inter",sans-serif; color:var(--fg);
+        background: radial-gradient(900px 500px at 80% -10%, rgba(124,92,255,.16), transparent 60%), var(--ink-900); }
+      .label { font-size:11px; text-transform:uppercase; letter-spacing:.18em; color:var(--faint); margin:0 0 14px; }
+      .row { display:flex; flex-wrap:wrap; gap:12px; align-items:center; margin-bottom:34px; }
+      button { font-family:inherit; font-size:14px; font-weight:600; border:0; border-radius:12px; padding:10px 16px; cursor:pointer; display:inline-flex; gap:8px; align-items:center; }
+      .primary { color:#fff; background:linear-gradient(90deg,var(--violet),var(--cyan)); box-shadow:0 8px 30px -8px rgba(124,92,255,.6); }
+      .outline { color:var(--fg); background:transparent; border:1px solid rgba(255,255,255,.12); }
+      .ghost { color:var(--muted); background:transparent; }
+      .danger { color:var(--denied); background:transparent; border:1px solid rgba(251,113,133,.3); }
+      .badge { display:inline-flex; gap:7px; align-items:center; border-radius:999px; padding:5px 11px; font-size:12px; font-weight:500; border:1px solid; }
+      .dot { width:6px; height:6px; border-radius:999px; display:inline-block; }
+      .b-violet { color:var(--violet-soft); background:rgba(124,92,255,.1); border-color:rgba(124,92,255,.25); }
+      .b-cyan { color:var(--cyan); background:rgba(34,211,238,.1); border-color:rgba(34,211,238,.25); }
+      .b-verified { color:var(--verified); background:rgba(52,211,153,.1); border-color:rgba(52,211,153,.25); }
+      .b-denied { color:var(--denied); background:rgba(251,113,133,.1); border-color:rgba(251,113,133,.25); }
+      .b-amber { color:var(--amber); background:rgba(251,191,36,.1); border-color:rgba(251,191,36,.25); }
+      .b-muted { color:var(--muted); background:rgba(255,255,255,.05); border-color:rgba(255,255,255,.1); }
+    </style>
+  </head>
+  <body>
+    <div class="label">Buttons</div>
+    <div class="row">
+      <button class="primary">Generate proof</button>
+      <button class="outline">Verify on Stellar</button>
+      <button class="ghost">Contract ↗</button>
+      <button class="danger">Replay a spent passport</button>
+    </div>
+
+    <div class="label">Status badges</div>
+    <div class="row">
+      <span class="badge b-violet"><span class="dot" style="background:var(--violet)"></span>testnet</span>
+      <span class="badge b-cyan"><span class="dot" style="background:var(--cyan)"></span>Proof ready</span>
+      <span class="badge b-verified"><span class="dot" style="background:var(--verified)"></span>Verified on-chain</span>
+      <span class="badge b-amber"><span class="dot" style="background:var(--amber)"></span>Proving…</span>
+      <span class="badge b-denied"><span class="dot" style="background:var(--denied)"></span>NullifierUsed</span>
+      <span class="badge b-muted"><span class="dot" style="background:var(--faint)"></span>Not minted</span>
+    </div>
+
+    <div class="label">Claim chips</div>
+    <div class="row">
+      <span class="badge b-violet">🧍 personhood · Merkle membership</span>
+      <span class="badge b-cyan">🔒 anti-Sybil · nullifier</span>
+      <span class="badge b-verified">💰 proof-of-funds · balance hidden</span>
+    </div>
+  </body>
+</html>

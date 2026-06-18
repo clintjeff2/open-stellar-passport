@@ -13,10 +13,15 @@ witness.wtns
 !build/.gitkeep
 # …but keep the compiled contract WASMs (deployment artifacts + contractimport input)
 !contracts/**/*.wasm
+# …and the demo's circuit artifacts, so the frontend runs out of the box
+!frontend/public/zk/**
 
 # Rust / Soroban
 target/
 *.wasm.d
+
+# Frontend dev logs
+frontend/vite.log
 
 # Env / secrets
 .env

@@ -1,0 +1,45 @@
+<!-- @dsCard group="Components" name="x402 payment gate" -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Payment gate — Agent Passport</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+      :root { --ink-900:#0a0a0f; --verified:#34d399; --denied:#fb7185; --fg:#ececf3; --muted:#8b8ba3; --faint:#5b5b73; }
+      * { box-sizing:border-box; }
+      body { margin:0; min-height:100vh; display:grid; place-items:center; padding:40px; font-family:"Inter",sans-serif; color:var(--fg);
+        background: radial-gradient(800px 460px at 80% -10%, rgba(124,92,255,.16), transparent 60%), var(--ink-900); }
+      .stack { display:grid; gap:16px; width:420px; }
+      .gate { display:flex; gap:14px; align-items:center; border-radius:16px; padding:16px; border:1px solid; }
+      .ok { border-color:rgba(52,211,153,.25); background:rgba(52,211,153,.06); }
+      .no { border-color:rgba(251,113,133,.25); background:rgba(251,113,133,.06); }
+      .em { font-size:26px; }
+      .t { font-size:14px; font-weight:600; }
+      .t.ok { color:var(--verified); }
+      .t.no { color:var(--denied); }
+      .d { font-size:12px; color:var(--muted); margin-top:2px; }
+      .label { font-size:11px; text-transform:uppercase; letter-spacing:.18em; color:var(--faint); }
+    </style>
+  </head>
+  <body>
+    <div class="stack">
+      <div class="label">x402 settle gate</div>
+      <div class="gate ok">
+        <span class="em">✅</span>
+        <div>
+          <div class="t ok">Payment authorized · 35 XLM</div>
+          <div class="d">Within proven spend cap — balance never revealed.</div>
+        </div>
+      </div>
+      <div class="gate no">
+        <span class="em">⛔</span>
+        <div>
+          <div class="t no">Payment denied · 70 XLM</div>
+          <div class="d">Exceeds proven spend cap — balance never revealed.</div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

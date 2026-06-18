@@ -1,0 +1,58 @@
+<!-- @dsCard group="Foundations" name="Color & type" -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Foundations — Agent Passport</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --ink-900: #0a0a0f; --ink-850: #0f0f17; --violet: #7c5cff; --violet-soft: #9d86ff;
+        --cyan: #22d3ee; --verified: #34d399; --denied: #fb7185; --amber: #fbbf24;
+        --fg: #ececf3; --muted: #8b8ba3; --faint: #5b5b73;
+      }
+      * { box-sizing: border-box; }
+      body { margin: 0; padding: 44px; font-family: "Inter", sans-serif; color: var(--fg);
+        background: radial-gradient(900px 500px at 80% -10%, rgba(124,92,255,.16), transparent 60%), var(--ink-900); }
+      h1 { font-size: 22px; font-weight: 800; margin: 0 0 4px; }
+      .sub { color: var(--muted); margin: 0 0 28px; font-size: 13px; }
+      .label { font-size: 11px; text-transform: uppercase; letter-spacing: .18em; color: var(--faint); margin-bottom: 12px; }
+      .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px,1fr)); gap: 12px; max-width: 760px; }
+      .sw { border-radius: 14px; border: 1px solid rgba(255,255,255,.08); overflow: hidden; }
+      .chip { height: 56px; }
+      .meta { padding: 8px 10px; font-size: 11px; }
+      .meta b { display: block; font-weight: 600; }
+      .meta code { color: var(--muted); font-family: "JetBrains Mono", monospace; }
+      .type { max-width: 760px; margin-top: 34px; }
+      .row { display: flex; align-items: baseline; gap: 16px; padding: 10px 0; border-top: 1px solid rgba(255,255,255,.07); }
+      .row span:first-child { width: 70px; color: var(--faint); font-size: 11px; font-family: "JetBrains Mono", monospace; }
+      .grad { background: linear-gradient(100deg, var(--violet-soft), var(--cyan)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    </style>
+  </head>
+  <body>
+    <h1>Foundations</h1>
+    <p class="sub">Dark “verifiable-credential” system · Inter + JetBrains Mono</p>
+
+    <div class="label">Palette</div>
+    <div class="swatches">
+      <div class="sw"><div class="chip" style="background:#0a0a0f"></div><div class="meta"><b>ink-900</b><code>#0A0A0F</code></div></div>
+      <div class="sw"><div class="chip" style="background:#0f0f17"></div><div class="meta"><b>ink-850</b><code>#0F0F17</code></div></div>
+      <div class="sw"><div class="chip" style="background:#7c5cff"></div><div class="meta"><b>violet</b><code>#7C5CFF</code></div></div>
+      <div class="sw"><div class="chip" style="background:#22d3ee"></div><div class="meta"><b>cyan</b><code>#22D3EE</code></div></div>
+      <div class="sw"><div class="chip" style="background:#34d399"></div><div class="meta"><b>verified</b><code>#34D399</code></div></div>
+      <div class="sw"><div class="chip" style="background:#fb7185"></div><div class="meta"><b>denied</b><code>#FB7185</code></div></div>
+      <div class="sw"><div class="chip" style="background:#fbbf24"></div><div class="meta"><b>amber</b><code>#FBBF24</code></div></div>
+      <div class="sw"><div class="chip" style="background:linear-gradient(120deg,#9d86ff,#22d3ee)"></div><div class="meta"><b>zk gradient</b><code>violet→cyan</code></div></div>
+    </div>
+
+    <div class="type">
+      <div class="label">Type scale</div>
+      <div class="row"><span>800/48</span><span style="font-size:34px;font-weight:800" class="grad">Prove, don’t reveal</span></div>
+      <div class="row"><span>700/22</span><span style="font-size:20px;font-weight:700">Agent Passport</span></div>
+      <div class="row"><span>500/14</span><span style="font-size:14px;color:var(--muted)">Verified human · solvent · Sybil-resistant</span></div>
+      <div class="row"><span>mono/12</span><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted)">0x7c5c…b75e · nullifier</span></div>
+    </div>
+  </body>
+</html>

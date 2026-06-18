@@ -1,0 +1,43 @@
+<!-- @dsCard group="Components" name="Proof console" -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Proof console — Agent Passport</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <style>
+      :root { --ink-900:#0a0a0f; --verified:#34d399; --denied:#fb7185; --amber:#fbbf24; --fg:#ececf3; --muted:#8b8ba3; --faint:#5b5b73; }
+      * { box-sizing:border-box; }
+      body { margin:0; min-height:100vh; display:grid; place-items:center; padding:40px; font-family:"Inter",sans-serif;
+        background: radial-gradient(800px 460px at 80% -10%, rgba(124,92,255,.16), transparent 60%), var(--ink-900); }
+      .console { width:440px; border-radius:18px; overflow:hidden; border:1px solid rgba(255,255,255,.08);
+        background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.015)); }
+      .bar { display:flex; gap:8px; align-items:center; padding:10px 14px; border-bottom:1px solid rgba(255,255,255,.08); }
+      .lights { display:flex; gap:6px; }
+      .lights span { width:10px; height:10px; border-radius:999px; }
+      .title { font-family:"JetBrains Mono",monospace; font-size:12px; color:var(--faint); }
+      .body { padding:16px; font-family:"JetBrains Mono",monospace; font-size:11px; line-height:1.8; }
+      .muted { color:var(--muted); }
+      .ok { color:var(--verified); }
+      .no { color:var(--denied); }
+    </style>
+  </head>
+  <body>
+    <div class="console">
+      <div class="bar">
+        <div class="lights"><span style="background:rgba(251,113,133,.6)"></span><span style="background:rgba(251,191,36,.6)"></span><span style="background:rgba(52,211,153,.6)"></span></div>
+        <span class="title">proof console</span>
+      </div>
+      <div class="body">
+        <div class="muted">10:42:01 → generating witness + Groth16 proof client-side (cap 50 XLM)…</div>
+        <div class="ok">10:42:02 ✓ proof generated in 985 ms · off-chain verify: true</div>
+        <div class="muted">10:42:02   agentId #4821007 · nullifier 2adfb605cf2fb677…</div>
+        <div class="muted">10:42:05 → submitting proof to AgentPassportValidator (BN254 pairing on-chain)…</div>
+        <div class="ok">10:42:07 ✓ ON-CHAIN VERIFIED · attestation minted (ledger 3146304)</div>
+        <div class="muted">10:42:12 → agent #4821007 requests payment of 70 XLM (x402 gate)…</div>
+        <div class="no">10:42:12 ⛔ DENIED — Exceeds proven spend cap</div>
+      </div>
+    </div>
+  </body>
+</html>

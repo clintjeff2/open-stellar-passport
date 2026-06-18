@@ -1,0 +1,39 @@
+/* Agent Passport — shared design tokens (mirrors frontend/src/index.css) */
+:root {
+  --ink-950: #08080c;
+  --ink-900: #0a0a0f;
+  --ink-850: #0f0f17;
+  --ink-800: #14141f;
+  --ink-700: #1d1d2b;
+  --ink-600: #2a2a3d;
+  --violet: #7c5cff;
+  --violet-soft: #9d86ff;
+  --cyan: #22d3ee;
+  --verified: #34d399;
+  --denied: #fb7185;
+  --amber: #fbbf24;
+  --fg: #ececf3;
+  --muted: #8b8ba3;
+  --faint: #5b5b73;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 40px;
+  font-family: "Inter", system-ui, sans-serif;
+  color: var(--fg);
+  background:
+    radial-gradient(900px 500px at 78% -8%, rgba(124, 92, 255, 0.16), transparent 60%),
+    radial-gradient(700px 400px at 8% 8%, rgba(34, 211, 238, 0.1), transparent 55%),
+    var(--ink-900);
+}
+.mono { font-family: "JetBrains Mono", monospace; }
+.glass {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+}
+.label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.18em; color: var(--faint); }

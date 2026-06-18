@@ -1,0 +1,69 @@
+<!-- @dsCard group="Components" name="Passport card" -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Passport card — Agent Passport</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <style>
+      :root { --ink-900:#0a0a0f; --ink-850:#0f0f17; --violet:#7c5cff; --cyan:#22d3ee; --verified:#34d399; --fg:#ececf3; --muted:#8b8ba3; --faint:#5b5b73; }
+      * { box-sizing:border-box; }
+      body { margin:0; min-height:100vh; display:grid; place-items:center; padding:40px; font-family:"Inter",sans-serif; color:var(--fg);
+        background: radial-gradient(800px 460px at 80% -10%, rgba(124,92,255,.18), transparent 60%), var(--ink-900); }
+      .wrap { width:380px; border-radius:26px; padding:1px; background:linear-gradient(140deg, rgba(124,92,255,.5), rgba(34,211,238,.35) 45%, rgba(124,92,255,.15)); }
+      .card { position:relative; overflow:hidden; border-radius:25px; padding:24px;
+        background:linear-gradient(135deg, rgba(124,92,255,.18), rgba(34,211,238,.12) 45%, rgba(124,92,255,.06)), rgba(15,15,23,.92); }
+      .grid { position:absolute; inset:0; opacity:.4;
+        background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px); background-size:36px 36px; }
+      .top { position:relative; display:flex; justify-content:space-between; align-items:flex-start; }
+      .brand { font-size:11px; text-transform:uppercase; letter-spacing:.2em; color:var(--muted); display:flex; gap:7px; align-items:center; }
+      .sub { font-family:"JetBrains Mono",monospace; font-size:11px; color:var(--faint); margin-top:3px; }
+      .badge { display:inline-flex; gap:7px; align-items:center; border-radius:999px; padding:5px 11px; font-size:12px; color:var(--verified); background:rgba(52,211,153,.1); border:1px solid rgba(52,211,153,.3); }
+      .dot { width:6px; height:6px; border-radius:999px; background:var(--verified); }
+      .id { position:relative; display:flex; gap:14px; align-items:center; margin-top:26px; }
+      .avatar { width:54px; height:54px; border-radius:16px; display:grid; place-items:center; font-size:24px; background:linear-gradient(135deg, rgba(124,92,255,.3), rgba(34,211,238,.2)); border:1px solid rgba(255,255,255,.1); }
+      .redact { letter-spacing:.2em; color:var(--muted); }
+      .hidden { display:inline-block; margin-left:8px; border-radius:999px; padding:3px 9px; font-size:11px; color:#9d86ff; background:rgba(124,92,255,.12); }
+      .data { position:relative; display:grid; grid-template-columns:1fr 1fr; gap:12px 16px; margin-top:24px; font-family:"JetBrains Mono",monospace; font-size:12px; }
+      .data .k { font-size:10px; text-transform:uppercase; letter-spacing:.05em; color:var(--faint); }
+      .data .v { color:#eceff3; }
+      .data .v.cy { color:var(--cyan); }
+      .foot { position:relative; display:flex; justify-content:space-between; align-items:center; margin-top:24px; padding-top:16px; border-top:1px solid rgba(255,255,255,.08); }
+      .foot .seq { font-family:"JetBrains Mono",monospace; font-size:10px; text-transform:uppercase; letter-spacing:.12em; color:var(--faint); }
+      .seal { width:36px; height:36px; border-radius:999px; display:grid; place-items:center; color:var(--verified); background:rgba(52,211,153,.15); border:1px solid rgba(52,211,153,.4); }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="card">
+        <div class="grid"></div>
+        <div class="top">
+          <div>
+            <div class="brand">🛂 Agent Passport</div>
+            <div class="sub">zk-credential · BN254</div>
+          </div>
+          <span class="badge"><span class="dot"></span>Verified on-chain</span>
+        </div>
+        <div class="id">
+          <div class="avatar">🛂</div>
+          <div>
+            <div style="font-size:11px;color:var(--faint)">Holder identity</div>
+            <div style="font-weight:600"><span class="redact">████████</span><span class="hidden">hidden by ZK</span></div>
+            <div style="font-size:11px;color:var(--faint);margin-top:2px">balance ████████ · proven ≥ cap</div>
+          </div>
+        </div>
+        <div class="data">
+          <div><div class="k">Agent ID</div><div class="v">#4821007</div></div>
+          <div><div class="k">Spend cap</div><div class="v cy">50.00 XLM</div></div>
+          <div><div class="k">Nullifier</div><div class="v">2adfb605…140b14</div></div>
+          <div><div class="k">Registry root</div><div class="v">06c8e54d…27fca</div></div>
+        </div>
+        <div class="foot">
+          <span class="seq">sealed · ledger 3146304</span>
+          <span class="seal">✓</span>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

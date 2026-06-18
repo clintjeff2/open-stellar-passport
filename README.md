@@ -66,7 +66,10 @@ proves : publicKey = Poseidon2(privateKey, 0)
   - Cross-contract calls the verifier, **burns the nullifier (anti-replay / anti-Sybil)**, mints a `zk-passport` attestation
   - On-chain e2e: `verify_and_register` → minted ✅; **replay → `NullifierUsed` ✅**; tampered input → `InvalidProof` ✅ (5 unit tests run the real proof through the real verifier WASM)
   - [`@open-stellar/agent-passport`](sdk/) SDK: client-side proving (snarkjs) + typed client + the `authorizePayment` x402 gate
-- [ ] Demo frontend + x402 settle gate (Open-Stellar integration)
+- [x] **Phase 3** — live [demo frontend](frontend/) ✅
+  - Real in-browser Groth16 proving (~1 s) → **real on-chain verification** (no wallet needed) → x402 payment gate → anti-replay
+  - Vite + React 19 + Tailwind v4; design system in [`design-system/`](design-system/) (published to Claude Design)
+  - Run: `cd frontend && npm install && npm run dev`
 - [ ] Selective-disclosure view key + per-payment `amount ≤ cap` proof (stretch)
 
 ## Build (Phase 0)
