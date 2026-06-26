@@ -1,7 +1,3 @@
-/**
- * High-level Agent Passport SDK: prove client-side, then mint / read the
- * on-chain attestation through the typed AgentPassportValidator client.
- */
 import { Client, networks, type Attestation, type AuditRecord } from "../bindings/src/index.js";
 import type { ClientOptions } from "@stellar/stellar-sdk/contract";
 import {
