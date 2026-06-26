@@ -315,7 +315,9 @@ impl AgentPassportValidator {
             .ok_or(Error::NotInitialized)?;
         admin.require_auth();
 
-        env.storage().instance().set(&DataKey::PendingAdmin, &new_admin);
+        env.storage()
+            .instance()
+            .set(&DataKey::PendingAdmin, &new_admin);
 
         AdminTransferStarted {
             old: admin,
@@ -337,7 +339,9 @@ impl AgentPassportValidator {
 
         let old_admin: Option<Address> = env.storage().instance().get(&DataKey::Admin);
 
-        env.storage().instance().set(&DataKey::Admin, &pending_admin);
+        env.storage()
+            .instance()
+            .set(&DataKey::Admin, &pending_admin);
         env.storage().instance().remove(&DataKey::PendingAdmin);
 
         AdminChanged {
@@ -368,9 +372,7 @@ impl AgentPassportValidator {
 
     /// True iff `root` is in the approved allow-list.
     pub fn is_registry_root_approved(env: Env, root: U256) -> bool {
-        env.storage()
-            .instance()
-            .has(&DataKey::RegistryRoot(root))
+        env.storage().instance().has(&DataKey::RegistryRoot(root))
     }
 
     /// Explicitly bump the TTL of the contract instance.

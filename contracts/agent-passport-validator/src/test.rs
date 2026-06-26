@@ -112,10 +112,26 @@ fn registers_a_valid_passport() {
 fn typed_passport_registered_event_keeps_legacy_shape() {
     let env = Env::default();
     let (validator_addr, _, client) = setup_with_id(&env, u256(&env, PI_ROOT));
+    let agent_id = u256(&env, PI_AGENT);
+    let nullifier = u256(&env, PI_NULLIFIER);
+    let spend_cap = u256(&env, PI_CAP);
+
+    let _typed_event = PassportRegistered {
+        agent_id: agent_id.clone(),
+        nullifier: nullifier.clone(),
+        spend_cap: spend_cap.clone(),
+    };
 
     client.verify_and_register(&real_proof(&env), &real_public_inputs(&env));
 
-    assert!(env.events().all().filter_by_contract(&validator_addr).events().len() >= 1);
+    assert!(
+        env.events()
+            .all()
+            .filter_by_contract(&validator_addr)
+            .events()
+            .len()
+            >= 1
+    );
 }
 
 #[test]
@@ -228,7 +244,14 @@ fn set_verifier_emits_event() {
     env.mock_all_auths();
     client.set_verifier(&new_verifier);
 
-    assert!(env.events().all().filter_by_contract(&validator_addr).events().len() >= 1);
+    assert!(
+        env.events()
+            .all()
+            .filter_by_contract(&validator_addr)
+            .events()
+            .len()
+            >= 1
+    );
 }
 
 #[test]
@@ -242,12 +265,26 @@ fn two_step_admin_transfer() {
     env.mock_all_auths();
     client.transfer_admin(&new_admin);
 
-    assert!(env.events().all().filter_by_contract(&validator_addr).events().len() >= 1);
+    assert!(
+        env.events()
+            .all()
+            .filter_by_contract(&validator_addr)
+            .events()
+            .len()
+            >= 1
+    );
 
     // Step 2: accept_admin
     client.accept_admin();
 
-    assert!(env.events().all().filter_by_contract(&validator_addr).events().len() >= 1);
+    assert!(
+        env.events()
+            .all()
+            .filter_by_contract(&validator_addr)
+            .events()
+            .len()
+            >= 1
+    );
 
     // Verify new admin can perform admin actions
     client.add_registry_root(&U256::from_u32(&env, 123));
@@ -262,13 +299,24 @@ fn renounce_admin() {
     env.mock_all_auths();
     client.renounce_admin();
 
-    assert!(env.events().all().filter_by_contract(&validator_addr).events().len() >= 1);
+    assert!(
+        env.events()
+            .all()
+            .filter_by_contract(&validator_addr)
+            .events()
+            .len()
+            >= 1
+    );
 
     // Admin actions should now fail
     let res = client.try_add_registry_root(&U256::from_u32(&env, 123));
     assert!(res.is_err());
 
     // Re-init should also fail
-    let res = client.try_init(&Address::generate(&env), &Address::generate(&env), &U256::from_u32(&env, 123));
+    let res = client.try_init(
+        &Address::generate(&env),
+        &Address::generate(&env),
+        &U256::from_u32(&env, 123),
+    );
     assert!(res.is_err());
 }

@@ -7,7 +7,8 @@
     "node": ">=20"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node scripts/verify-vk.mjs",
+    "verify:vk": "node scripts/verify-vk.mjs"
   },
   "keywords": [],
   "author": "",
@@ -16,5 +17,8 @@
   "dependencies": {
     "circomlib": "^2.0.5",
     "snarkjs": "^0.7.6"
+  },
+  "overrides": {
+    "bfj": "9.1.3"
   }
 }
