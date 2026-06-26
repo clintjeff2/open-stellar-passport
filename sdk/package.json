@@ -34,5 +34,24 @@
     "bfj": "9.1.3",
     "esbuild": "0.28.1"
   },
-  "license": "MIT"
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/leocagli/open-stellar-passport.git",
+    "directory": "sdk"
+  },
+  "keywords": [
+    "stellar",
+    "soroban",
+    "zero-knowledge",
+    "zk",
+    "groth16",
+    "sdk",
+    "agent-passport",
+    "x402"
+  ],
+  "author": "Leo Cagli",
+  "engines": {
+    "node": ">=20"
+  }
 }
