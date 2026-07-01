@@ -66,14 +66,14 @@ pub enum Error {
     NullifierUsed = 4,
     /// The Groth16 proof did not verify against the embedded key.
     InvalidProof = 5,
-    /// Batch size exceeds the limit of 8.
-    BatchTooLarge = 6,
     /// The registry root is not in the approved allow-list.
     UnknownRegistryRoot = 7,
     /// The requested spend exceeds the remaining cumulative cap.
     InsufficientSpendCap = 8,
     /// No passport found for the given agent.
     PassportNotFound = 9,
+    /// Batch size exceeds the limit of 8.
+    BatchTooLarge = 7,
 }
 
 #[contracttype]
@@ -327,6 +327,7 @@ impl AgentPassportValidator {
                         Error::NullifierUsed => Some(Symbol::new(&env, "NullifierUsed")),
                         Error::InvalidProof => Some(Symbol::new(&env, "InvalidProof")),
                         Error::NotInitialized => Some(Symbol::new(&env, "NotInitialized")),
+                        Error::UnknownRegistryRoot => Some(Symbol::new(&env, "UnknownRegistryRoot")),
                         _ => Some(Symbol::new(&env, "Error")),
                     };
                     results.push_back(VerifyResult {
